@@ -13,6 +13,8 @@
 
   <modules>
     <module>insight</module>
+    <module>idc-client</module>
+    <module>idc</module>
   </modules>
 
   <properties>
