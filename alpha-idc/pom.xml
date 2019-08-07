@@ -4,18 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>alpha-online</artifactId>
-        <groupId>org.ko</groupId>
+        <groupId>io.alpha</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.ko.idc</groupId>
+    <groupId>io.alpha.idc</groupId>
     <artifactId>alpha-idc</artifactId>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
     <modules>
-        <module>insight</module>
-        <module>idc-client</module>
+        <module>idc-repo</module>
+        <module>idc-meta</module>
     </modules>
 
 

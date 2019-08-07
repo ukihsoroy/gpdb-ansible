@@ -11,7 +11,7 @@
     <version>2.1.6.RELEASE</version>
   </parent>
 
-  <groupId>org.ko</groupId>
+  <groupId>io.alpha</groupId>
   <artifactId>alpha-online</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -20,6 +20,8 @@
 
   <modules>
     <module>alpha-idc</module>
+    <module>alpha-admin</module>
+    <module>alpha-auth</module>
   </modules>
 
   <properties>
@@ -29,6 +31,19 @@
     <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
     <lombok.version>1.18.8</lombok.version>
   </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
 
   <dependencyManagement>
     <dependencies>
@@ -51,20 +66,5 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <dependencies>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
-      <optional>true</optional>
-    </dependency>
-  </dependencies>
 
 </project>
