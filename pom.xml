@@ -19,7 +19,7 @@
   <name>alpha-online</name>
 
   <modules>
-    <module>alpha-idc</module>
+    <module>alpha-fusion</module>
     <module>alpha-admin</module>
     <module>alpha-auth</module>
   </modules>
