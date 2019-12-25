@@ -4,11 +4,16 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.alpha</groupId>
-  <artifactId>alpha-core</artifactId>
+  <parent>
+    <artifactId>alpha-app</artifactId>
+    <groupId>io.alpha.app</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>alpha-api</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>alpha-core</name>
+  <name>alpha-api</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 

@@ -22,7 +22,8 @@
     <module>alpha-fusion</module>
     <module>alpha-admin</module>
     <module>alpha-auth</module>
-    <module>alpha-core</module>
+    <module>alpha-app</module>
+    <module>alpha-gateway</module>
   </modules>
 
   <properties>
