@@ -1,7 +1,0 @@
-server:
-  port: 8081
-spring:
-  application:
-    name: alpha-admin
-  profiles:
-    active: dev
