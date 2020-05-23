@@ -1,0 +1,46 @@
+---
+
+- hosts: all
+  become: yes
+  vars:
+    gppasswd: "gpadmin1234"
+    gpdbrpm: "greenplum-db-6.4.0-rhel7-x86_64.rpm"
+  roles:
+    - common
+    - gpdb
+
+- name: create master data directory
+  hosts: master
+  gather_facts: no
+  become: yes
+  vars:
+    gpmasterdir: ["/hadoop/gp/master"]
+  tasks:
+    - name: create master dir 
+      file: path={{ item }} owner=gpadmin group=gpadmin state=directory
+      with_items: 
+       - "{{ gpmasterdir }}"
+
+- name: create master data directory
+  hosts: segment
+  gather_facts: no
+  become: yes
+  vars:
+    gpsegdir: ["/hadoop/gp/primary","/hadoop/gp/mirror"]
+  tasks:
+    - name: create master dir 
+      file: path={{ item }} owner=gpadmin group=gpadmin state=directory
+      with_items: 
+       - "{{ gpsegdir }}"
+    
+
+- name: create rsa
+  hosts: master
+  gather_facts: no
+  become: yes
+  become_user: gpadmin
+  tasks:
+    - name: create rsa
+      command: ssh-keygen -t rsa -P '' -f /home/gpadmin/.ssh/id_rsa creates=/home/gpadmin/.ssh/id_rsa
+    - name: copy id_rsa.pub
+      fetch: src=/home/gpadmin/.ssh/id_rsa.pub dest=/tmp/pub/id_rsa_{{hostname}} flat=yes

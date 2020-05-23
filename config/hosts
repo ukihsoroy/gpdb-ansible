@@ -1,0 +1,7 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+
+10.247.33.238 hdp1.c.citic hdp1
+10.247.33.239 hdp2.c.citic hdp2
+10.247.33.240 hdp3.c.citic hdp3

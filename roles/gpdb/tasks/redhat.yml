@@ -1,0 +1,8 @@
+---
+  
+- name: copy rpm to host
+  copy: src={{ gpdbrpm }} dest=/tmp/
+- name: install gpdb
+  yum: name=/tmp/{{ gpdbrpm }} state=present
+- name: set owner
+  shell: chown -R gpadmin.gpadmin /usr/local/greenplum-db*

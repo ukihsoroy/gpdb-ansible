@@ -1,0 +1,17 @@
+ARRAY_NAME="Greenplum Data Platform"
+SEG_PREFIX=gpseg
+PORT_BASE=6000
+
+declare -a DATA_DIRECTORY=(/hadoop/gp/primary)
+MASTER_HOSTNAME=hdp1.c.citic
+
+MASTER_DIRECTORY=/hadoop/gp/master
+MASTER_PORT=5432
+TRUSTED_SHELL=ssh
+CHECK_POINT_SEGMENTS=8
+ENCODING=UNICODE
+
+MIRROR_PORT_BASE=7000
+declare -a MIRROR_DATA_DIRECTORY=(/hadoop/gp/mirror)
+
+DATABASE_NAME=citic

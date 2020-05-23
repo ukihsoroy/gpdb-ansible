@@ -1,0 +1,5 @@
+[master]
+10.247.33.238 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=xxx hostname=hdp1.c.citic
+[segment]
+10.247.33.239 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=xxx hostname=hdp2.c.citic
+10.247.33.240 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=xxx hostname=hdp3.c.citic

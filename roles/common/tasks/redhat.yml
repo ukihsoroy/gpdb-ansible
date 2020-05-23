@@ -1,0 +1,89 @@
+---
+
+# for now fail if it's not a Red Hat based system
+- name: Check OS (common)
+  fail: msg="Not a Red Hat based system!"
+  when: ansible_distribution != 'CentOS' and ansible_distribution != 'Red Hat Enterprise Linux'
+
+
+- name: check if systemd is used (1)
+  stat: path=/run/systemd/system
+  register: systemd_exists
+
+
+- name: check if systemd is used (2)
+  fail: msg="systemd is not installed"
+  when: systemd_exists.stat.exists != True
+
+
+- name: disable selinux
+  lineinfile: dest=/etc/selinux/config regexp='^SELINUX=' line='SELINUX=disabled'
+  
+- name: disable firewalled
+  service: name=firewalld state=stopped enabled=no
+
+- name: Hostname
+  hostname: name={{ hostname }}
+#  notify:
+#    - restart system
+#    - waiting for server to come back after restart
+
+
+- name: copy files
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: "hosts", dest: "/etc/hosts" }
+    - { src: "sysctl.conf", dest: "/etc/sysctl.conf" }
+    - { src: "limits.conf", dest: "/etc/security/limits.conf" }
+
+- name: create group
+  group: name=gpadmin
+  
+- name: create user
+  user: name=gpadmin group=gpadmin password={{ gppasswd |password_hash('sha512') }}
+ 
+- name: gpadmin sudo
+  lineinfile: dest=/etc/sudoers regexp='^gpadmin' line='gpadmin ALL=(ALL) NOPASSWD:ALL'
+
+- name: set env
+  lineinfile: dest=/home/gpadmin/.bashrc regexp='^source /usr/local/greenplum-db/greenplum_path.sh' line='source /usr/local/greenplum-db/greenplum_path.sh'   
+  
+#- name: format sdb
+#  script: format.sh vdb /data
+  
+#- name: basic packages
+#  yum: name= {{ item }} state=present
+#  with_items:
+#    - unzip
+#    - net-tools
+#    - krb5-devel
+#    - zip
+#    - apr
+#    - apr-util
+#    - bash
+#    - bzip2
+#    - curl
+#    - krb5
+#    - libcurl
+#    - libevent
+#    - libxml2
+#    - libyaml
+#    - zlib
+#    - openldap
+#    - openssh
+#    - openssl
+#    - openssl-libs
+#    - perl
+#    - readline
+#    - rsync
+#    - R
+#    - sed
+#    - tar
+#    - zip
+
+- name: disable hugepage
+  shell: grubby --update-kernel=ALL --args="transparent_hugepage=never"
+
+- name: sysctl -p
+  shell: sysctl -p
+

@@ -1,0 +1,13 @@
+---
+
+- name: Linux Create User and Upload User Public keys
+  hosts: all
+  gather_facts: no
+  become: yes
+  become_user: gpadmin
+  tasks:
+    - name: Set authorized key took from file
+      authorized_key:
+        user: "gpadmin"
+        state: present
+        key: "{{ lookup('file', '/tmp/pub_local') }}"
